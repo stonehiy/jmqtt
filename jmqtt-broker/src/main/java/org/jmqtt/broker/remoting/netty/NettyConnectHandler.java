@@ -8,7 +8,7 @@ import org.jmqtt.broker.common.log.JmqttLogger;
 import org.jmqtt.broker.common.log.LogUtil;
 import org.jmqtt.broker.remoting.util.RemotingHelper;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 public class NettyConnectHandler extends ChannelDuplexHandler {
 

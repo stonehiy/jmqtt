@@ -8,6 +8,16 @@
             "console": "internalConsole",
             "mainClass": "org.jmqtt.jmqttapi.JmqttApiApplication",
             "projectName": "jmqtt-api",
+            "args": "Jmqtt_Conf_Home=${workspaceFolder}\\jmqtt-api\\src\\main\\resources\\conf"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MqttApplication<jmqtt-acceptance>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.jmqtt.mqtt.v3.acceptance.MqttApplication",
+            "projectName": "jmqtt-acceptance",
             "args": ""
         }
     ]
