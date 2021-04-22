@@ -12,6 +12,8 @@ import org.jmqtt.broker.common.log.JmqttLogger;
 import org.jmqtt.broker.common.log.LogUtil;
 import org.jmqtt.broker.common.model.Message;
 import org.jmqtt.broker.common.model.MessageHeader;
+import org.jmqtt.broker.common.model.MessagePayload;
+import org.jmqtt.broker.common.model.MessageSer;
 import org.jmqtt.broker.processor.RequestProcessor;
 import org.jmqtt.broker.remoting.session.ClientSession;
 import org.jmqtt.broker.remoting.session.ConnectManager;
@@ -51,7 +53,15 @@ public class PublishProcessor extends AbstractMessageProcessor implements Reques
                 clientSession.getCtx().close();
                 return;
             }
-            innerMsg.setPayload(MessageUtil.readBytesFromByteBuf(((MqttPublishMessage) mqttMessage).payload()));
+            //innerMsg.setPayload(MessageUtil.readBytesFromByteBuf(((MqttPublishMessage) mqttMessage).payload()));
+
+            MessageSer messageSer = MessageUtil.readBytesFromByteBufMessgePayload(((MqttPublishMessage) mqttMessage).payload());
+            innerMsg.setPayload(messageSer.getBytes());
+
+            MessagePayload messagePayload = messageSer.getMessagePayload();
+
+            LogUtil.info(log,"[PubMessage] -> Process message,messagePayload={}",messagePayload);
+
             innerMsg.setClientId(clientId);
             innerMsg.setType(Message.Type.valueOf(mqttMessage.fixedHeader().messageType().value()));
             Map<String,Object> headers = new HashMap<>();
@@ -63,6 +73,7 @@ public class PublishProcessor extends AbstractMessageProcessor implements Reques
             innerMsg.setMsgId(publishMessage.variableHeader().packetId());
             switch (qos){
                 case AT_MOST_ONCE:
+                    LogUtil.debug(log,"[PubMessage] -> Process qos0 message,clientId={}", innerMsg.getClientId());
                     processMessage(innerMsg);
                     break;
                 case AT_LEAST_ONCE:

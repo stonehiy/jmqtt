@@ -22,6 +22,8 @@ public class Message {
 
     private long storeTime;
 
+    private MessagePayload messagePayload;
+
     public Message(){}
 
     public Message(Type type,Map<String,Object> headers,byte[] payload){
@@ -37,6 +39,14 @@ public class Message {
         return headers.put(key,value);
     }
 
+
+    public MessagePayload getMessagePayload() {
+        return messagePayload;
+    }
+
+    public void setMessagePayload(MessagePayload messagePayload) {
+        this.messagePayload = messagePayload;
+    }
 
     public Object removeHeader(String key){
         return headers.remove(key);

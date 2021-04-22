@@ -19,6 +19,7 @@
         <module>jmqtt-admin</module>
         <module>jmqtt-springboot-starter</module>
         <module>jmqtt-acceptance</module>
+        <module>jmqtt-api</module>
     </modules>
 
     <name>jmqtt</name>

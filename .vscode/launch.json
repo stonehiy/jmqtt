@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-JmqttApiApplication<jmqtt-api>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "org.jmqtt.jmqttapi.JmqttApiApplication",
+            "projectName": "jmqtt-api",
+            "args": ""
+        }
+    ]
+}
