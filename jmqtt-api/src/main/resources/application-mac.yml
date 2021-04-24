@@ -6,7 +6,7 @@ server:
 jmqtt:
   # BrokerConfig配置规则为jmqtt.broker.参数名
   broker:
-    jmqttHome: /Users/cindy/Desktop/quwan/jmqttjmqtt-api\src\main\resources
+    jmqttHome: /Users/cindy/Desktop/quwan/jmqtt/jmqtt-api/src/main/resources
     clusterMode: 2
     highPerformance: false
     maxPollEventNum: 10
