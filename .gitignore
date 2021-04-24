@@ -71,3 +71,5 @@ target/
 hs_err_pid*
 rocksdb.db/
 jmqtt-springboot-starter/.factorypath
+
+*.factorypath
