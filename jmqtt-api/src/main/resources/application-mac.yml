@@ -1,0 +1,36 @@
+server:
+  port: 28080
+
+
+
+jmqtt:
+  # BrokerConfig配置规则为jmqtt.broker.参数名
+  broker:
+    jmqttHome: /Users/cindy/Desktop/quwan/jmqttjmqtt-api\src\main\resources
+    clusterMode: 2
+    highPerformance: false
+    maxPollEventNum: 10
+    pollWaitInterval: 10
+    sessionStoreClass: org.jmqtt.broker.store.mem.MemSessionStore
+    messageStoreClass: org.jmqtt.broker.store.mem.MemMessageStore
+    clusterEventHandlerClass: org.jmqtt.broker.processor.dispatcher.mem.MemEventHandler
+    logLevel: DEBUG
+
+
+
+  # NettyConfig配置规则为jmqtt.netty.参数名
+  netty:
+    tcpBackLog: 520
+
+    startTcp: true
+    tcpPort: 1883
+
+    startWebsocket: true
+    websocketPort: 1884
+
+    startSslTcp: true
+    sslTcpPort: 8883
+
+    startSslWebsocket: true
+    sslWebsocketPort: 8884
+
