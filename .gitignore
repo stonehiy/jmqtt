@@ -2,7 +2,7 @@ storage/
 run/
 test_out/
 tmp/
-doc/
+
 .directory
 .loadpath
 .metadata

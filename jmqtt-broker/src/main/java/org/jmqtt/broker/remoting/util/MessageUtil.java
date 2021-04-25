@@ -7,8 +7,6 @@ import org.jmqtt.broker.common.model.Message;
 import org.jmqtt.broker.common.model.MessageHeader;
 import org.jmqtt.broker.common.model.MessagePayload;
 import org.jmqtt.broker.common.model.MessageSer;
-import org.jmqtt.broker.common.model.MessagePayload.Flag;
-
 import java.util.List;
 
 /**
