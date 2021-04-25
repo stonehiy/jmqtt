@@ -7,6 +7,7 @@ import org.jmqtt.broker.common.model.Message;
 import org.jmqtt.broker.common.model.MessageHeader;
 import org.jmqtt.broker.common.model.MessagePayload;
 import org.jmqtt.broker.common.model.MessageSer;
+import org.jmqtt.broker.common.model.MessagePayload.Flag;
 
 import java.util.List;
 
@@ -44,26 +45,28 @@ public class MessageUtil {
     }
 
     /**
-     * //大于 1+8+8+8
+     * //大于 1+1+8+8+8
      *
      * @param msg
      * @return
      */
     private static boolean doDecode(ByteBuf msg, MessageSer messageSer) {
         //这个表示头长度的字节数。
-        //1.msg由包头以及包体组成，小于25byte不处理丢弃掉。
-        if (msg.readableBytes() < 25) {
+        //1.msg由包头以及包体组成，小于2byte不处理丢弃掉。
+        if (msg.readableBytes() < 26) {
             return false;
         }
         //2.我们标记一下当前的readIndex的位置
         msg.markReaderIndex();
         //3.解析
         // 读取传送过来的消息的长度。ByteBuf 的readInt()方法会让他的readIndex增加4
+        byte flag = msg.readByte();//1字节
         byte type = msg.readByte();//1字节
         long from = msg.readLong();//8字节
         long to = msg.readLong();//8字节
         long timestamp = msg.readLong();//8字节
         MessagePayload messagePayload = new MessagePayload();
+        messagePayload.setFlag(MessagePayload.Flag.valueOf(flag));
         messagePayload.setType(MessagePayload.MessagePayloadType.valueOf(type));
         messagePayload.setFrom(from);
         messagePayload.setTo(to);
@@ -76,7 +79,7 @@ public class MessageUtil {
         }
         byte[] body = new byte[len];
         msg.readBytes(body);
-        messagePayload.setContent(String.valueOf(body));
+        messagePayload.setContent(new String(body));
 
         if (msg.readableBytes() > 0) {
             return true;

@@ -5,13 +5,24 @@ package org.jmqtt.broker.common.model;
  */
 public class MessagePayload {
 
+    private Flag flag; //起始符号位 0xff开头
     private MessagePayloadType type; // 1字节
     private long from; //8字节
     private long to; //8字节
     private long timestamp;//8字节
     private String content;//内容
 
+    
+    public Flag getFlag() {
+        return flag;
+    }
 
+    public void setFlag(Flag flag) {
+        this.flag = flag;
+    }
+
+
+  
     public MessagePayloadType getType() {
         return type;
     }
@@ -52,6 +63,42 @@ public class MessagePayload {
         this.content = content;
     }
 
+    public enum Flag{
+
+        QMTT_IM(0x7F);
+
+        private int value;
+
+        
+
+        private Flag(int value) {
+            this.value = value;
+        }
+
+        public int value() {
+            return value;
+        }
+
+        public static MessagePayload.Flag valueOf(int type) {
+            MessagePayload.Flag[] var1 = values();
+            int var2 = var1.length;
+
+            for (int var3 = 0; var3 < var2; ++var3) {
+                MessagePayload.Flag t = var1[var3];
+                if (t.value == type) {
+                    return t;
+                }
+            }
+            throw new IllegalArgumentException("unknown message Flag: " + type);
+        }
+
+       
+
+        
+
+
+    }
+
     public enum MessagePayloadType {
         TEXT(0x00),
         IMAGE(0x01),
@@ -85,12 +132,12 @@ public class MessagePayload {
 
     @Override
     public String toString() {
-        return "MessagePayload{" +
-                "type=" + type +
-                ", from=" + from +
-                ", to=" + to +
-                ", timestamp=" + timestamp +
-                ", content='" + content + '\'' +
-                '}';
+        return "MessagePayload [content=" + content + ", flag=" + flag + ", from=" + from + ", timestamp=" + timestamp
+                + ", to=" + to + ", type=" + type + "]";
     }
+
+
+  
+   
+   
 }
