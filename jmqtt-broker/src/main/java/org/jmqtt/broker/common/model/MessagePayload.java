@@ -100,10 +100,10 @@ public class MessagePayload {
     }
 
     public enum MessagePayloadType {
-        TEXT(0x00),
-        IMAGE(0x01),
-        VOICE(0x02),
-        VIDEO(0x03);
+        TEXT(0x01),
+        IMAGE(0x02),
+        VOICE(0x03),
+        VIDEO(0x04);
 
 
         private int value;

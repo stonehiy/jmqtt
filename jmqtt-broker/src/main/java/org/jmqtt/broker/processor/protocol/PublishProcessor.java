@@ -60,7 +60,7 @@ public class PublishProcessor extends AbstractMessageProcessor implements Reques
 
             MessagePayload messagePayload = messageSer.getMessagePayload();
 
-            LogUtil.info(log,"[PubMessage] -> Process message,messagePayload={}",messagePayload);
+            LogUtil.debug(log,"[PubMessage] -> Process message,messagePayload={}",messagePayload);
 
             innerMsg.setClientId(clientId);
             innerMsg.setType(Message.Type.valueOf(mqttMessage.fixedHeader().messageType().value()));
