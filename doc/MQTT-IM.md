@@ -2,6 +2,8 @@
 
 [基于MQTT协议的移动IM系统设计与实现](https://www.sohu.com/a/113926583_354885)
 
+[基于MQTT协议的移动IM系统设计与实现](https://www.ixueshu.com/document/c7c50ff0aa56f70b9bf860c35bd87ec3318947a18e7f9386.html)
+
 #### mqtt pulish 控制报文
 
 见：qmtt-im.png
